@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- This first line defines the code as html, good practice, but most of the time website will assume this -->
+<html>
+    <!-- The line above states that the stuff inside is the code we will be using -->
+    <head>
+        <!--  Tells the browser stuff like the title and the dimensions, doen't display anything to the user-->
+        <title>My First Website</title>
+        <!-- Title of the website -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- The line above defines the dimensions, so commonly used that you can just write meta:vp to call it -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <!-- This imports the leaflet program that downloads the images -->
+    </head>
+    <body>
+<!-- This is where the actual code that the website displays to the user is -->
+ 
+        <body class="Main" id="Main">  
+            <!-- <h1>My First Website</h1> -->
+            <!-- Text on the website, first size, based on use of h1 to h6, will produce different sizes -->
+        
+        <div id= "Title">
+            <h1 id="Title_Text" class="WhiteText">
+            Report a Pot Hole
+            <img src="https://www.roadtrafficsigns.com/img/lg/K/pothole-slow-down-sign-k-0757.png"
+                alt="Pothole sign"
+                height = "50"
+                width="35"
+            </h1>
+            <!-- Gives the name and image of the title of the webpage -->
+        </div>
+        <div>
+            <p id="SubTitle_Text" class="WhiteText"
+                <b>Current Potholes in the world:</b>
+            </p>
+                <ol class="WhiteText">
+                    <!-- List items -->
+                    <li id="LightBlue">
+                        34 Pine Ave. Sylvania OH 43560
+                        <button onclick="showOnMap(41.6929765, -83.8129724)">View in Map</button>
+                    </li>
+                    <li>
+                        7763 Buckingham Lane Collegeville, PA 19426
+                        <button onclick="showOnMap(40.1622996, -75.4634399)">View in Map</button>
+                    </li>
+                    <li>
+                        129 Cactus Court Onalaska, WI 54650
+                        <button onclick="showOnMap(43.8833282, -91.2359932)">View in Map</button>
+                        <!-- Locations and buttons for each -->
+                    </li>
+                    <div id="map"> </div>
+                    <!-- Placeholder for the map -->
+                    <!-- Form? -->
+                    <div class ="container">
+                        <h1 id="Title_Text" class="WhiteText"> Report: </h1>
+                        <form action="/action_page.php">
+                            <!-- form fields -->
+                            <div>
+                                <label class="WhiteText" for="add"> Name: </label>
+                             </div>
+                             <div>
+                                <input class="Margin" id="InputBox" type="text" name="name" phaceholder="Your name...">
+                             <div>
+                                <label class="WhiteText" for="add"> Address: </label>
+                             </div>
+                             <div>
+                                <input class="Margin" id="InputBox" type="text" name="name" phaceholder="Your address...">
+                             </div>
+                             <input class="Margin" id="SubmitBox" type="submit" values="Submit">
+                            <!-- Creates the text/input boxes for new locations -->
+                        </form>
+
+                        <script>
+                            // Initialization the map and set its view to a default location and zoom level
+                            var map = L.map("map").setView([41.6929765,-83.8129724], 13)
+                            
+                            // Set up the Leaflets map layer using OpenStreetMap tiles
+                            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                                attribution: '&copy; OpenStreetMap contributors'
+                            }).addTo(map)
+
+                            function showOnMap(lat, lng) {
+                                //Set the view of the map to the selected location and zoom in on it
+                                map.setView([lat,lng],15);
+
+                                //Add a marker at the selected location
+                                L.marker([lat,lng]).addTo(map)
+                                    .bindPopup('Pothole Location')
+                                    .openPopup();
+                            }
+                        </script>
+                    </div>
+                
+                </ol>
+                <!-- Supposed to display the location? -->
+            </div>
+        </div>
+    </body>
+</html>
+<!-- This is the general format for a website, commenting is ctrl / -->
